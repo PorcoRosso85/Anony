@@ -2,16 +2,16 @@ services:
   database:
     image: postgres
     volumes:
-      - ./pgdata/db:/var/lib/postgresql/data
+      - ./pgdata:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  web:
-    build: .
+  app:
+    build: ./app/
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/code
+      - ./app/:/app/
     ports:
       - "8001:8000"
     environment:
